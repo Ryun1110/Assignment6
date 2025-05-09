@@ -28,9 +28,6 @@ Point light at (−4, 4, −3), unit white intensity
 Gamma correction γ = 2.2
 
  Repository Structure
-graphql
-복사
-편집
 ├── CG_hw6.pdf           # Assignment specification
 ├── Q1.cpp               # Flat shading implementation
 ├── Q2.cpp               # Gouraud shading implementation
