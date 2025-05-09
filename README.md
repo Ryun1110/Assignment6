@@ -46,20 +46,21 @@ Windows-only: <windows.h> and ShellApi.h for automatic BMP display (optional on 
 Compile
 
 
-# Flat shading
-g++ -std=c++17 Q1.cpp -o flat_shading
+### Q1: Flat Shading (`Q1.cpp`)
+- **Per-Triangle Lighting**: computes ambient + diffuse + specular once at each triangle’s centroid, giving a uniform “faceted” look.  
+- **Centroid & Normal Calculation**: calculates the geometric center and face normal for each triangle.  
+- **Post-Shading Gamma Correction**: applies γ=2.2 after computing the flat color.
 
-# Gouraud shading
-g++ -std=c++17 Q2.cpp -o gouraud_shading
+### Q2: Gouraud Shading (`Q2.cpp`)
+- **Per-Vertex Lighting**: evaluates ambient, diffuse, and specular components at every vertex in world space.  
+- **Barycentric Color Interpolation**: linearly blends vertex colors across the triangle to produce smooth gradients.  
+- **Depth Interpolation**: carries interpolated depth values into the z-buffer test for proper occlusion.
 
-# Phong shading
-g++ -std=c++17 Q3.cpp -o phong_shading
-Execute
-Each executable writes:
+### Q3: Phong Shading (`Q3.cpp`)
+- **Per-Pixel Lighting**: interpolates world-space normals and positions at each pixel, then computes lighting per fragment for detailed highlights.  
+- **Smooth Specular Highlights**: delivers high-quality shininess by evaluating the gloss term per pixel.  
+- **Combined Interpolation**: blends both position and normal data to drive accurate lighting and depth tests.  
 
-Q?_output.ppm (portable pixmap)
-
-Q?_output.bmp (Windows-only BMP)
 
 ./flat_shading      # produces Q1_output.ppm & Q1_output.bmp
 ./gouraud_shading   # produces Q2_output.ppm & Q2_output.bmp
